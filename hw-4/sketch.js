@@ -43,7 +43,7 @@ pop();
 
 stroke('rgb(0,0,0)');
 strokeWeight(10);
-line(0,-280,0,120);
+line(0,-280,0,118);
 
 ellipse(20,-265,5,5);
 ellipse(20,-240,5,5);
@@ -75,7 +75,7 @@ push();
 translate(0,-175);
 
 noStroke();
-fill('rgb(246, 216, 177)')
+fill('rgb(81, 112, 65)')
 ellipse(0,-130,200,200);
 fill(0);
 arc(0,-60,250,60,radians(190),radians(350),PIE);
@@ -93,11 +93,11 @@ translate( -60, -40 );
 
 fill(255);
 ellipse( 0,-280, 60, 35 );
-noFill();
-fill( 'rgb(75, 185, 255)' );
+noStroke();
+
 ellipse( 0, -280, 30 );
-fill( 0 );
-ellipse( 0, -280, 20 );
+fill('rgb(35,128, 224)');
+ellipse( 0, -280, 25 );
 
 rotate(PI);
 noStroke();
@@ -110,9 +110,9 @@ translate( 60, 40 );
 fill(255);
 ellipse( 0,-360, 60, 35 );
 noFill();
-fill( 'rgb(75, 185, 255)' );
+
 ellipse( 0, -360, 30 );
-fill( 0 );
+fill('rgb(35, 128, 224)');
 ellipse( 0, -360, 20 );
 
 rotate(PI);
