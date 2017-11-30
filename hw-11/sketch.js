@@ -1,73 +1,87 @@
-let cube = [];
-let numOfCube = 25;
-let bgColor;
+// I wanted to call these "boxes" cubes instead of "boxes" but this stupid code is stupid so they're called boxes now I suppose UGH
 
-function setup(){
-  createCanvas(windowWidth, windowHeight);
-  bgColor = color("rgb(64, 227, 139)")
+var boxes = [];
+var boxNum = 30;
 
-  for (let i = 0; i < numOfCube; i++) {
-    cube.push( new Cube() );
+
+function setup() {
+  createCanvas( windowWidth, windowHeight );
+  background("rgb(64, 227, 139)");
+
+
+  for (let i = 0; i < boxNum; i++) {
+    boxes.push( new Box( width/2, height/2, random(2,20), (random(150,255), random(255), random(255))) );
   }
+
 }
 
-function draw(){
-  background(bgColor);
+function draw() {
 
+  for (var i = 0; i < boxes.length; i++) {
+        boxes[i].frame();
+    }
 
-
-
-class Cube {
-
-constructor(x,y) {
-  this.size = random(20,60);
-  this.posX = x;
-  this.posY = y;
-  this.moveX = random(-3, 3);
-  this.moveY = random(-3, 3);
-  this.cubeColor = color(random(150, 255), random(100, 255), random(255));
 }
 
-frame() {
-  this.display();
-  this.move();
-}
+class Box {
+
+  constructor( x, y, size, color ) {
+
+    this.size = random( 60, 60 );
+    this.width = size;
+    this.height = size;
+    this.posX = x;
+    this.posY = y;
+    this.deltaX = random( -10, 10 );
+    this.deltaY = random( -10, 10 );
+    this.boxColor = (random(150, 255), random(100, 255), random(0,255));
+
+    // why THE HECK are my CUBES not different colors????????????
+  }
 
 
-display() {
+  frame() {
+    this.display();
+    this.move();
+    this.edgeCheck();
+  }
 
-  push();
 
-  noStroke();
+  display() {
+    push();
 
-  fill(this.cubeColor);
+    fill( this.boxColor );
 
-  translate(this.posX, this.posY);
+    noStroke();
 
-  rotate(PI/3.0);
+    rotate(PI/ 4.0);
 
-  quad(0, 0, this.size, this.size);
+    translate( this.posX, this.posY );
 
-  pop();
-}
+    rect( 0, 0, this.width, this.height );
+    pop();
+  }
 
-move(){
-  this.posX += this.moveX;
-  this.posY += this.moveX;
 
-        if (this.posX >= width) {
-            this.moveX *= -1;
-            this.posX = width - abs(this.moveX);
-        } else if (this.posX <= 0) {
-            this.moveX *= -1;
-            this.posX = abs(this.moveX);
-        } else if (this.posY >= height) {
-            this.moveY *= -1;
-            this.posY = height - abs(this.moveY);
-        } else if (this.posY <= 0) {
-            this.moveY *= -1;
-            this.posY = abs(this.moveY);
-        }
-      }
+  move() {
+    this.posX += this.deltaX;
+    this.posY += this.deltaY;
+  }
+
+
+  edgeCheck() {
+    if (this.posX >= width) {
+        this.moveX *= -1;
+        this.posX = width - abs(this.moveX);
+    } else if (this.posX <= 0) {
+        this.moveX *= -1;
+        this.posX = abs(this.moveX);
+    } else if (this.posY >= height) {
+        this.moveY *= -1;
+        this.posY = height - abs(this.moveY);
+    } else if (this.posY <= 0) {
+        this.moveY *= -1;
+        this.posY = abs(this.moveY);
     }
   }
+}
